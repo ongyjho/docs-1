@@ -298,7 +298,7 @@ In addition to conditional statements, Blade provides simple directives for work
         <p>I'm looping forever.</p>
     @endwhile
 
-> {tip} When looping, you may use the [loop variable](#the-loop-variable) to gain valuable information about the loop, such as whether you are in the first or last iteration through the loop.
+> {tip} While iterating through a `foreach` loop, you may use the [loop variable](#the-loop-variable) to gain valuable information about the loop, such as whether you are in the first or last iteration through the loop.
 
 When using loops you may also end the loop or skip the current iteration using the `@continue` and `@break` directives:
 
@@ -327,7 +327,7 @@ You may also include the continuation or break condition within the directive de
 <a name="the-loop-variable"></a>
 ### The Loop Variable
 
-When looping, a `$loop` variable will be available inside of your loop. This variable provides access to some useful bits of information such as the current loop index and whether this is the first or last iteration through the loop:
+While iterating through a `foreach` loop, a `$loop` variable will be available inside of your loop. This variable provides access to some useful bits of information such as the current loop index and whether this is the first or last iteration through the loop:
 
     @foreach ($users as $user)
         @if ($loop->first)
@@ -471,7 +471,7 @@ Blade also allows you to define comments in your views. However, unlike HTML com
 
 Components and slots provide similar benefits to sections, layouts, and includes; however, some may find the mental model of components and slots easier to understand. There are two approaches to writing components: class based components and anonymous components.
 
-To create a class based component, you may use the `make:component` Artisan command. To illustrate how to use components, we will create a simple `Alert` component. The `make:component` command will place the component in the `App\View\Components` directory:
+To create a class based component, you may use the `make:component` Artisan command. To illustrate how to use components, we will create a simple `Alert` component. The `make:component` command will place the component in the `app/View/Components` directory:
 
     php artisan make:component Alert
 
@@ -481,7 +481,7 @@ You may also create components within subdirectories:
 
     php artisan make:component Forms/Input
 
-The command above will create an `Input` component in the `App\View\Components\Forms` directory and the view will be placed in the `resources/views/components/forms` directory.
+The command above will create an `Input` component in the `app/View/Components/Forms` directory and the view will be placed in the `resources/views/components/forms` directory.
 
 <a name="manually-registering-package-components"></a>
 #### Manually Registering Package Components
@@ -534,7 +534,7 @@ To display a component, you may use a Blade component tag within one of your Bla
 
     <x-user-profile/>
 
-If the component class is nested deeper within the `App\View\Components` directory, you may use the `.` character to indicate directory nesting. For example, if we assume a component is located at `App\View\Components\Inputs\Button.php`, we may render it like so:
+If the component class is nested deeper within the `app/View/Components` directory, you may use the `.` character to indicate directory nesting. For example, if we assume a component is located at `app/View/Components/Inputs/Button.php`, we may render it like so:
 
     <x-inputs.button/>
 
@@ -848,6 +848,7 @@ You may retrieve a specific attribute's value using the `get` method:
 By default, some keywords are reserved for Blade's internal use in order to render components. The following keywords cannot be defined as public properties or method names within your components:
 
 <div class="content-list" markdown="1">
+
 - `data`
 - `render`
 - `resolveView`
@@ -855,6 +856,7 @@ By default, some keywords are reserved for Blade's internal use in order to rend
 - `view`
 - `withAttributes`
 - `withName`
+
 </div>
 
 <a name="slots"></a>
